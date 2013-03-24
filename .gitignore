@@ -1,7 +1,0 @@
-kernel/.tmp_versions
-kernel/.config
-kernel/.config.old
-*.tmp
-*.o
-*.mod
-*.ko

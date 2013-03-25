@@ -1,10 +1,41 @@
-export PATH=~/Your_Toolchain_PATH/ 
-for_example  /alps/prebuilt/linux-x86/toolchain/arm-linux-androideabi-4.4.x/bin:$PATH
+Obtenir un compilateur
+======================
+Linux ou Mac:
+git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.6
+git clone https://android.googlesource.com/platform/prebuilts/gcc/darwin-x86/arm/arm-eabi-4.6
 
-Buile command:
 
-kernel
-======
+Déclarer les varables d'environnement
+=====================================
+export ARCH=arm
+export CROSS_COMPILE=arm-eabi-
+export PATH="/home/user/Toolchain_PATH/arm-eabi-4.6/bin:$PATH"
+
+
+Compilation du noyau:
+=====================
 cd <kernel path>
 cp mediatek-configs .config
 TARGET_PRODUCT=s8073 MTK_ROOT_CUSTOM=../mediatek/custom make
+
+Copier le fichier arch/arm/boot/zImage dans le répertoire ou vous aller l'intégrer à l'image boot à flasher.
+
+Créer l'image boot
+==================
+Télécharger les scripts: unpack-MT65xx.pl et repack-MT65xx.pl.
+
+Prendre le fichier boot.img d'origine.
+unpack-MT65xx.pl boot.img
+
+Récupérer l'entête du noyau d'origine.
+dd if=boot.img-kernel.img of=zImage_mod bs=512 count=1
+
+l'intégrer au nouveau noyau.
+dd if=zImage of=zImage_mod bs=512 seek=1
+
+Recréer l'image boot
+repack-MT65xx.pl -boot zImage_mod boot.img-ramdisk img_boot.img
+
+Flasher
+=======
+Si le smartphone boot en boucle, le header est mauvais.

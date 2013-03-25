@@ -6,4 +6,5 @@ mediatek/custom/out
 *.o
 *.mod
 *.ko
+*.cmd
 *~

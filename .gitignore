@@ -1,0 +1,12 @@
+<<<<<<< HEAD
+kernel/.tmp_versions
+kernel/.config
+kernel/.config.old
+mediatek/custom/out
+*.tmp
+*.o
+*.mod
+*.ko
+=======
+
+>>>>>>> 7fb0e6a6875b04f4f9df0e9d8536e63949cc1378

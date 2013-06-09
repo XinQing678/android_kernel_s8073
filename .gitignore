@@ -33,6 +33,17 @@ modules.builtin
 *.gcno
 
 #
+#MTK Specific
+#
+kernel/.tmp_versions
+kernel/.config
+kernel/.config.old
+mediatek/custom/out
+*.tmp
+*.mod
+*.cmd
+
+#
 # Top-level generic files
 #
 /tags
